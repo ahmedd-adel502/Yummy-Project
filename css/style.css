@@ -202,5 +202,8 @@ div.invalid-feedback{
     min-width: 100%;
     margin-top: 10px;
   }
+  .contact .container, .contact .container .form-content{
+    width: 100%;
+  }
 }
 

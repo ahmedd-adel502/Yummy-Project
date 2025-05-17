@@ -491,43 +491,19 @@ function getContact(){
     let submitBtn= document.querySelector("#submit");
 
     function checkContact() {
-        const isNameValid = validateContact(nameRegex, nameInput);
-        const isEmailValid = validateContact(emailRegex, emailInput);
-        const isPhoneValid = validateContact(phoneRegex, phoneInput);
-        const isAgeValid = validateContact(ageRegex, ageInput);
-        const isPasswordValid = validateContact(passwordRegex, passwordInput);
-        const isRePasswordValid = rePasswordInput.value === passwordInput.value && passwordInput.value !== "";
-
-        if (isRePasswordValid) {
-            rePasswordInput.classList.add("is-valid");
-            rePasswordInput.classList.remove("is-invalid");
-            rePasswordInput.nextElementSibling.classList.add("d-none");
-        } else {
-            rePasswordInput.classList.add("is-invalid");
-            rePasswordInput.classList.remove("is-valid");
-            rePasswordInput.nextElementSibling.classList.remove("d-none");
-        }
-        if (isNameValid && isEmailValid && isPhoneValid && isAgeValid && isPasswordValid && isRePasswordValid) {
+        let nameValid = validateContact(nameRegex,nameInput);
+        let emailValid = validateContact(emailRegex,emailInput);
+        let phoneValid = validateContact(phoneRegex,phoneInput);
+        let ageValid = validateContact(ageRegex,ageInput);
+        let passwordValid = validateContact(passwordRegex,passwordInput);
+        let rePasswordValid = validateContact(passwordRegex,rePasswordInput);
+        if(nameValid && emailValid && phoneValid && ageValid && passwordValid && rePasswordValid){
             submitBtn.removeAttribute("disabled");
         } else {
-            submitBtn.setAttribute("disabled", "true");
+            submitBtn.setAttribute("disabled","disabled");
         }
-        
     }
-    nameInput.addEventListener("input", checkContact);
-    emailInput.addEventListener("input", checkContact);
-    phoneInput.addEventListener("input", checkContact);
-    ageInput.addEventListener("input", checkContact);
-    passwordInput.addEventListener("input", checkContact);
-    rePasswordInput.addEventListener("input", checkContact);
-        submitBtn.addEventListener("click",()=>{
-            if(submitBtn.hasAttribute("disabled")){
-                return;
-            }
-            else{
-                window.location.href="index.html"
-            }
-        })
+    
 }
 function validateContact(Regex,element){
     if(Regex.test(element.value)){
