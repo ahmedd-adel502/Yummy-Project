@@ -180,3 +180,7 @@ div.invalid-feedback{
   padding: 15px 10px;
   border-radius: 5px;
 }
+.search .input-group{
+    width:80%;
+    margin-inline:auto;
+}
