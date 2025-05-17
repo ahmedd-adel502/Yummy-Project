@@ -186,11 +186,11 @@ function searchPage() {
                         </div>
                     `;
                 });
-                htmlContainer.innerHTML+=`
+                 resultsContainer.innerHTML +=`
                     <div class="container d-flex justify-content-center mt-5">
                          <button class="back btn btn-primary d-block position-relative" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Home</button>
                     </div>
-                     `
+                 `
 
                 $(".meal").css({ cursor: "pointer" });
             } catch (err) {
@@ -461,7 +461,7 @@ function getContact(){
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-danger mt-3 mx-auto d-block disabled" id="submit">Submit</button>
+                        <button type="submit" class="btn btn-outline-danger mt-3 mx-auto d-block" disabled id="submit">Submit</button>
                     </form>
                 </div>
             </div>
@@ -483,45 +483,61 @@ function getContact(){
     let ageInput = document.querySelector(".age-input input");
     let passwordInput = document.querySelector(".password-input input");
     let rePasswordInput = document.querySelector(".repassword-input input");
+    let submitBtn= document.querySelector("#submit");
 
-    nameInput.addEventListener("input", () => validateContact(nameRegex, nameInput));
-    emailInput.addEventListener("input", () => validateContact(emailRegex, emailInput));
-    phoneInput.addEventListener("input", () => validateContact(phoneRegex, phoneInput));
-    ageInput.addEventListener("input", () => validateContact(ageRegex, ageInput));
-    passwordInput.addEventListener("input", () => validateContact(passwordRegex, passwordInput));
-    rePasswordInput.addEventListener("input", () => {
-        if (rePasswordInput.value === passwordInput.value && passwordInput.value !== "") {
+    function checkContact() {
+        const isNameValid = validateContact(nameRegex, nameInput);
+        const isEmailValid = validateContact(emailRegex, emailInput);
+        const isPhoneValid = validateContact(phoneRegex, phoneInput);
+        const isAgeValid = validateContact(ageRegex, ageInput);
+        const isPasswordValid = validateContact(passwordRegex, passwordInput);
+        const isRePasswordValid = rePasswordInput.value === passwordInput.value && passwordInput.value !== "";
+
+        if (isRePasswordValid) {
             rePasswordInput.classList.add("is-valid");
             rePasswordInput.classList.remove("is-invalid");
             rePasswordInput.nextElementSibling.classList.add("d-none");
-         }  else {
+        } else {
             rePasswordInput.classList.add("is-invalid");
             rePasswordInput.classList.remove("is-valid");
             rePasswordInput.nextElementSibling.classList.remove("d-none");
         }
-    });
-
+        if (isNameValid && isEmailValid && isPhoneValid && isAgeValid && isPasswordValid && isRePasswordValid) {
+            submitBtn.removeAttribute("disabled");
+        } else {
+            submitBtn.setAttribute("disabled", "true");
+        }
+        
+    }
+    nameInput.addEventListener("input", checkContact);
+    emailInput.addEventListener("input", checkContact);
+    phoneInput.addEventListener("input", checkContact);
+    ageInput.addEventListener("input", checkContact);
+    passwordInput.addEventListener("input", checkContact);
+    rePasswordInput.addEventListener("input", checkContact);
+        submitBtn.addEventListener("click",()=>{
+            if(submitBtn.hasAttribute("disabled")){
+                return;
+            }
+            else{
+                window.location.href="index.html"
+            }
+        })
 }
-   
 function validateContact(Regex,element){
-    let submitBtn= document.querySelector("#submit");
     if(Regex.test(element.value)){
         element.classList.add("is-valid");
         element.classList.remove("is-invalid");
         element.nextElementSibling.classList.add("d-none");
-        submitBtn.classList.remove("disabled")
-        submitBtn.addEventListener("click",function(){
-            setTimeout(()=>{
-                window.location.href="index.html"
-            },250)
-        })
+        return true;
     }else{
         element.classList.add("is-invalid");
         element.classList.remove("is-valid");
         element.nextElementSibling.classList.remove("d-none");
-        submitBtn.classList.add("disabled")
+        return false;
     }
-    }
+   
+}
 //! events
 openCloseIcon.addEventListener("click",()=>{
         if(openCloseIcon.classList.contains("fa-align-justify")){
