@@ -111,7 +111,7 @@ async function getMeals(){
                         <button class="btn btn-success" onclick="window.open('${meal.strSource}')">Source</button>
                         <button class="btn btn-danger" onclick="window.open('${meal.strYoutube}')">Youtube</button>
                     </div>
-                    <button class="back btn btn-primary d-block position-absolute" onclick="getMeals()"><i class="fa-solid fa-arrow-left"></i> Go Back</button>
+                    <button class="back btn btn-primary d-block position-relative bottom-0 mt-2" onclick="getMeals()"><i class="fa-solid fa-arrow-left"></i> Go Back</button>
                 </div>
             `
             closeSideNav()

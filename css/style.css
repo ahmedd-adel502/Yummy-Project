@@ -180,7 +180,27 @@ div.invalid-feedback{
   padding: 15px 10px;
   border-radius: 5px;
 }
-.search .input-group{
-    width:80%;
-    margin-inline:auto;
+
+@media screen and (min-width:300px) and (max-width:500px){
+  .container{
+    width:70%;
+    margin-left: auto;
+    text-align: center;
+  }
+  .meal-instructions{
+    font-size: 12px;
+  }
+  .search .container{
+    width: 100%;
+  }
+  .input-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .input-group>.form-control{
+    min-width: 100%;
+    margin-top: 10px;
+  }
 }
+
