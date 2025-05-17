@@ -192,7 +192,12 @@ function searchPage() {
                     </div>
                  `
 
-                $(".meal").css({ cursor: "pointer" });
+                 $(".meal").css({ cursor: "pointer" });
+                    $(".meal").on("click", function (e) {
+                        let currentMealName = e.target.innerText;
+                        getMealDetails(currentMealName);
+                        
+                    });
             } catch (err) {
                 console.error(err);
                 resultsContainer.innerHTML = `<h4 class="text-center text-danger">Something went wrong!</h4>`;
