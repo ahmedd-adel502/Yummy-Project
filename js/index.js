@@ -131,7 +131,7 @@ function searchPage() {
         htmlContainer.innerHTML = `
             <section class="search">
                 <div class="container mb-4">
-                    <div class="input-group">
+                    <div class="input-group col-md-8">
                         <input id="searchByName" type="text" class="form-control me-3" placeholder="Search by Name" aria-label="Search">
                         <input id="searchByLetter" type="text" maxlength="1" class="form-control" placeholder="Search by First Letter" aria-label="Search">
                     </div>
