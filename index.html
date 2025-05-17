@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy</title>
+    <link rel="stylesheet" href="css/all.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="icon" href="./images/favicon.png">
+</head>
+<body>
+    <div class="loading-screen d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <nav class="d-flex flex-column justify-content-between p-4">
+                <ul class="links list-unstyled m-0">
+                    <a href="#search" id="searchLink"><li class="position-relative">Search</li></a>
+                    <a href="#categories" id="categoriesLink"><li class="position-relative">Categories</li></a>
+                    <a href="#area" id="areaLink"><li class="position-relative">Area</li></a>
+                    <a href="#ingredients" id="ingredientsLink"><li class="position-relative">Ingredients</li></a>
+                    <a href="#contact" id="contactLink"><li class="position-relative">Contact Us</li></a>
+                </ul>
+                <div class="copy">
+                    <ul class="copy-list list-unstyled d-flex justify-content-around w-25 mb-0 ">
+                        <a href="https://www.facebook.com/ahmedadell502" target="_blank" class="mx-2"><li><i class="fa-brands fa-facebook"></i></li></a>
+                        <a href="#" class="mx-2"><li><i class="fa-brands fa-twitter"></i></li></a>
+                        <a href="#" class="mx-2"><li><i class="fa-brands fa-instagram"></i></li></a>
+                    </ul>
+                    <p class="copyright text-white">Designed by <a href="https://www.facebook.com/ahmedadell502" target="_blank" class="text-white fw-bold"><strong>Ahmed Adel </strong></a>Copyright &copy; 2025 All Rights Reserved.</p>
+                </div>
+        </nav>
+        <div class="mini-nav d-flex flex-column justify-content-between">
+            <div class="logo pt-3">
+                <a href="index.html"><img class="w-75" src="images/logo.png" alt="logo"/></a>
+            </div>
+            <div class="menu">
+                <i class="fa-solid open-close-icon fa-2x fa-align-justify"></i>
+            </div>
+            <ul class="list-unstyled mini-nav-links">
+                <a href="#"><li><i class="fa fa-globe text-black"></i></li></a>
+                <a href="#"><li><i class="fa fa-share-nodes text-black"></i></li></a>
+            </ul>
+        </div>
+    </header>
+    <main class="min-vh-100 bg-black py-5">
+        <section class="main-dishes">
+            <div class="container">
+                <div class="row g-4" id="htmlContainer">
+                   
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
