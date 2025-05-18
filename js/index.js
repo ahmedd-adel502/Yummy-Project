@@ -503,7 +503,13 @@ function getContact(){
             submitBtn.setAttribute("disabled","disabled");
         }
     }
-    
+
+    nameInput.addEventListener("input",checkContact);
+    emailInput.addEventListener("input",checkContact);
+    phoneInput.addEventListener("input",checkContact);
+    ageInput.addEventListener("input",checkContact);
+    passwordInput.addEventListener("input",checkContact);
+    rePasswordInput.addEventListener("input",checkContact);
 }
 function validateContact(Regex,element){
     if(Regex.test(element.value)){
