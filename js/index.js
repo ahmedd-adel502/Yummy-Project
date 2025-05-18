@@ -490,19 +490,38 @@ function getContact(){
     let rePasswordInput = document.querySelector(".repassword-input input");
     let submitBtn= document.querySelector("#submit");
 
-    function checkContact() {
-        let nameValid = validateContact(nameRegex,nameInput);
-        let emailValid = validateContact(emailRegex,emailInput);
-        let phoneValid = validateContact(phoneRegex,phoneInput);
-        let ageValid = validateContact(ageRegex,ageInput);
-        let passwordValid = validateContact(passwordRegex,passwordInput);
-        let rePasswordValid = validateContact(passwordRegex,rePasswordInput);
-        if(nameValid && emailValid && phoneValid && ageValid && passwordValid && rePasswordValid){
-            submitBtn.removeAttribute("disabled");
-        } else {
-            submitBtn.setAttribute("disabled","disabled");
-        }
+   function checkContact() {
+    let nameValid = validateContact(nameRegex, nameInput);
+    let emailValid = validateContact(emailRegex, emailInput);
+    let phoneValid = validateContact(phoneRegex, phoneInput);
+    let ageValid = validateContact(ageRegex, ageInput);
+    let passwordValid = validateContact(passwordRegex, passwordInput);
+    let rePasswordValid = passwordInput.value === rePasswordInput.value && passwordInput.value !== "";
+    let rePassFeedback = rePasswordInput.nextElementSibling;
+    if (rePasswordInput.value === "") {
+        rePassFeedback.classList.add("d-none");
+        rePasswordInput.classList.remove("is-invalid", "is-valid");
+    } else if (rePasswordValid) {
+        rePasswordInput.classList.remove("is-invalid");
+        rePasswordInput.classList.add("is-valid");
+        rePassFeedback.classList.add("d-none");
+    } else {
+        rePasswordInput.classList.remove("is-valid");
+        rePasswordInput.classList.add("is-invalid");
+        rePassFeedback.classList.remove("d-none");
     }
+
+    if (nameValid && emailValid && phoneValid && ageValid && passwordValid && rePasswordValid) {
+        submitBtn.removeAttribute("disabled");
+        submitBtn.addEventListener("click", () => {
+            setTimeout(() => {
+                window.location.href = "index.html";
+            },250)
+        })
+    } else {
+        submitBtn.setAttribute("disabled", "disabled");
+    }
+}
 
     nameInput.addEventListener("input",checkContact);
     emailInput.addEventListener("input",checkContact);
@@ -511,20 +530,29 @@ function getContact(){
     passwordInput.addEventListener("input",checkContact);
     rePasswordInput.addEventListener("input",checkContact);
 }
-function validateContact(Regex,element){
-    if(Regex.test(element.value)){
-        element.classList.add("is-valid");
-        element.classList.remove("is-invalid");
-        element.nextElementSibling.classList.add("d-none");
-        return true;
-    }else{
-        element.classList.add("is-invalid");
-        element.classList.remove("is-valid");
-        element.nextElementSibling.classList.remove("d-none");
+function validateContact(regex, element) {
+    let isValid = regex.test(element.value);
+    let feedback = element.nextElementSibling;
+
+    if (element.value === "") {
+        feedback.classList.add("d-none");
+        element.classList.remove("is-invalid", "is-valid");
         return false;
     }
-   
+
+    if (isValid) {
+        element.classList.remove("is-invalid");
+        element.classList.add("is-valid");
+        feedback.classList.add("d-none");
+    } else {
+        element.classList.remove("is-valid");
+        element.classList.add("is-invalid");
+        feedback.classList.remove("d-none");
+    }
+
+    return isValid;
 }
+
 //! events
 openCloseIcon.addEventListener("click",()=>{
         if(openCloseIcon.classList.contains("fa-align-justify")){
